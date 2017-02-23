@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todo" class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>BAM Stack Todo</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- build:css styles/style.css -->
+        <!-- bower:css -->
+        <link rel="stylesheet" href="../bower_components/bootstrap-css-only/css/bootstrap.css" />
+        <!-- endbower -->
+        <!-- endbuild -->
+    </head>
+    <body>
+        <div class="container" ng-controller="mainController">
+            <div class="jumbotron text-center">
+                <h1>Let's Do Some Shit!
+            </div>
+
+            <!-- FORM TO CREATE TODOS -->
+            <div id="todo-form" class="row">
+                <div class="col-sm-8 col-sm-offset-2 text-center">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control input-lg text-center" ng-model="formData.text">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- TODO LIST -->
+            <div id="todo-list" class="row">
+                <div class="col-sm-4 col-sm-offset-2">
+                    <div class="checkbox" ng-repeat="todo in todos">
+                        <input type="button" class="btn btn-danger" value="X" ng-click="deleteTodo(todo._id)">
+                        <label style="font-size: large;">{{todo.text}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <!-- build:js scripts/app.js -->
+    <!-- bower:js -->
+    <script src="../bower_components/angular/angular.js"></script>
+    <!-- endbower -->
+    <script src="./scripts/app.js"></script>
+    <!-- endbuild -->
+</html>

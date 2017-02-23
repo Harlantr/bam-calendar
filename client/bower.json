@@ -1,0 +1,22 @@
+{
+  "name": "bam-stack-bootstrap",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Thomas Harlan <thomasrharlan@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-css-only": "^3.3.7",
+    "angular": "^1.6.2"
+  }
+}
