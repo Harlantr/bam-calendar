@@ -78,7 +78,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default',[
         'clean',
-        'wiredep',
         'copy',
         'useminPrepare',
         'concat',

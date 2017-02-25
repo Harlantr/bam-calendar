@@ -3,3 +3,4 @@ client/.tmp
 client/bower_components
 client/node_modules
 client/dist
+npm-debug.log
