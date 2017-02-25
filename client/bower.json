@@ -1,22 +1,32 @@
 {
-  "name": "bam-stack-bootstrap",
-  "description": "",
-  "main": "",
-  "authors": [
-    "Thomas Harlan <thomasrharlan@gmail.com>"
-  ],
+  "name": "bam-calendar",
+  "version": "0.0.1",
+  "description": "A BAM-Stack implementation of fullcalendar.js",
+  "author": "Thomas Harlan",
   "license": "MIT",
-  "homepage": "",
-  "private": true,
+  "homepage": "https://github.com/Harlantr/bam-calendar",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
-    "tests"
+    "demo*",
+    "gruntFile.js",
+    "package.json"
   ],
   "dependencies": {
-    "bootstrap-css-only": "^3.3.7",
-    "angular": "^1.6.2"
+    "angular": ">=1.4.x",
+    "jquery": "~3.1.1",
+    "fullcalendar": "~2.9.1",
+    "moment": ">=2.5.0",
+    "angular-ui-calendar": "^1.0.2",
+    "bootstrap-css-only": "^3.3.7"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.x",
+    "bootstrap-css": "2.3.1"
+  },
+  "resolutions": {
+    "jquery": "^3.1.1",
+    "angular": ">=1.4.x"
   }
 }

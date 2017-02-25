@@ -1,5 +1,13 @@
 {
+  "name": "bam-calendar",
+  "version": "0.0.1",
+  "description": "A BAM-Stack implementation of fullcalendar.js",
+  "author": "Thomas Harlan",
+  "license": "MIT",
+  "homepage": "https://github.com/Harlantr/bam-calendar",
+  "main": "src/calendar.js",
   "dependencies": {
+    "fullcalendar": "^3.2.0",
     "grunt": "~0.4.2",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-concat": "~0.3.0",
@@ -12,5 +20,9 @@
     "grunt-usemin": "~2.0.2",
     "grunt-wiredep": "^3.0.1",
     "load-grunt-tasks": "~0.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Harlantr/bam-calendar"
   }
 }
