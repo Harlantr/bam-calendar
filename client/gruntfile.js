@@ -6,13 +6,6 @@ module.exports = function(grunt) {
         // Remove all files from dist directory
         clean: ['dist/*'],
 
-        // Inject bower components into index.html
-        wiredep: {
-          task: {
-            src: ['app/**/*.html']
-          }
-        },
-
         // Copy necessary files into dist directory
         copy:{
             main: {
