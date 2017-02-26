@@ -84,8 +84,7 @@ module.exports = function(grunt) {
         'uglify',
         'cssmin',
         'usemin',
-        'htmlmin',
-        'uncss'
+        'htmlmin'
     ]);
 
     grunt.registerTask('serve',[
