@@ -1,43 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="calendarDemoApp" id="top">
+<html lang="en" ng-app="bamCalendar" id="top">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>BAM Calendar</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <base href="/">
 
         <!-- build:css styles/style.css -->
         <link rel="stylesheet" href="../bower_components/fullcalendar/dist/fullcalendar.css" />
         <link rel="stylesheet" href="../bower_components/bootstrap-css-only/css/bootstrap.css" />
+
         <link rel="stylesheet" href="style.css" />
         <!-- endbuild -->
     </head>
-    <body data-spy="scroll">
-        <div role="main">
-            <div class="container" ng-controller="CalendarCtrl">
-                <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
-                    <h4 ng-hide>{{alertMessage}}</h4>
-                </div>
-                <div class="btn-toolbar">
-                    <div class="btn-group">
-                        <button class="btn btn-success" ng-click="changeView('agendaDay', 'myCalendar1')">AgendaDay</button>
-                        <button class="btn btn-success" ng-click="changeView('agendaWeek', 'myCalendar1')">AgendaWeek</button>
-                        <button class="btn btn-success" ng-click="changeView('month', 'myCalendar1')">Month</button>
-                    </div>
-                </div>
-                <div ng-model="eventSources" ui-calendar="uiConfig.calendar"></div>
-            </div>
-        </div>
+    <body>
+        <div ng-view=""></div>
     </body>
 
     <!-- build:js scripts/app.js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/moment/moment.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
     <script src="../bower_components/angular-ui-calendar/src/calendar.js"></script>
     <script src="../bower_components/fullcalendar/dist/fullcalendar.js"></script>
 
     <script type="text/javascript" src="scripts/app.js"></script>
+    <script type="text/javascript" src="scripts/controllers/calendarCtrl.js"></script>
     <!-- endbuild -->
 </html>

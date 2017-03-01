@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
+        <h4 ng-hide>{{alertMessage}}</h4>
+    </div>
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <button class="btn btn-success" ng-click="changeView('agendaDay', 'mainCal')">Day</button>
+            <button class="btn btn-success" ng-click="changeView('agendaWeek', 'mainCal')">Week</button>
+            <button class="btn btn-success" ng-click="changeView('month', 'mainCal')">Month</button>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-primary" ng-click=addEvent()>Add Event</button>
+        </div>
+    </div>
+    <div ng-model="eventSources" ui-calendar="uiConfig.calendar"></div>
+</div>

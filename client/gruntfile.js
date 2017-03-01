@@ -9,9 +9,10 @@ module.exports = function(grunt) {
         // Copy necessary files into dist directory
         copy:{
             main: {
-                files: [
-                    { src: './app/index.html', dest: 'dist/index.html' }
-                ]
+                expand: true,
+                cwd: './app',
+                src: '**/*.html',
+                dest: 'dist/'
             }
         },
 
