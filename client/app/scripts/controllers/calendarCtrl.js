@@ -2,69 +2,46 @@ angular.module('bamCalendar')
     .controller('calendarCtrl', ['$scope', '$compile', '$timeout', 'uiCalendarConfig', 'dataFactory',
         function($scope, $compile, $timeout, uiCalendarConfig, dataFactory){
 
-    var date = new Date();
-    var d = date.getDate();
-    var m = date.getMonth();
-    var y = date.getFullYear();
+    // "New Event" form object
+    $scope.newEventFormData = {};
 
-    /* alert on eventClick */
+
+    /* On click */
     $scope.alertOnEventClick = function( event, jsEvent, view){
         $scope.chosenEvent = event;
     };
 
-    /* alert on Drop */
+    /* On drop */
      $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
         $scope.alertMessage = ('Event Dropped to make dayDelta ' + delta);
     };
 
-    /* alert on Resize */
-    $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view ){
-        $scope.alertMessage = ('Event Resized to make dayDelta ' + delta);
-    };
-
-    /* add and removes an event source of choice */
-    $scope.addRemoveEventSource = function(sources,source) {
-        var canAdd = 0;
-        angular.forEach(sources,function(value, key){
-            if(sources[key] === source){
-                sources.splice(key,1);
-                canAdd = 1;
-            }
-        });
-        if(canAdd === 0){
-            sources.push(source);
-        }
-    };
-
-    /* add custom event*/
+    /* Add custom event*/
     $scope.addEvent = function(isValid) {
         if(isValid){
-            //Generate UUID (this will eventually be done server-side)
-            var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);});
-            $scope.events.push({
-                id: uuid,
-                title: $scope.newEventTitle,
-                requestor: $scope.newEventRequestor,
-                start: new Date(y, m, 28),
-            });
+            $scope.newEventFormData.start = new Date(y, m, d);  //Temporary, until I get date picker working
 
-            //Clear Form
-            $scope.newEventTitle = ''
-            $scope.newEventRequestor = ''
-            $scope.newEventDueDate = ''
+            //Save new event
+            dataFactory.addEvent($scope.newEventFormData)
+            .then(
+                function success(response){
+                    loadEvents()
+                },
+                function error(response){
+                    alert("Error storing data");
+                });
 
-        }else{
-            alert('bad.')
+            //Clear form object
+            $scope.newEventFormData = {}
         }
-        console.log($scope.events);
     };
 
-    /* remove event */
+    /* Remove event */
     $scope.remove = function(index) {
         $scope.events.splice(index,1);
     };
 
-    /* Change View */
+    /* Change View (Day/Week/Month) */
     $scope.changeView = function(view,calendar) {
         uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
     };
@@ -80,12 +57,10 @@ angular.module('bamCalendar')
 
      /* Render Tooltip */
     $scope.eventRender = function( event, element, view ) {
-        element.attr({'tooltip': event.title,
-                      'tooltip-append-to-body': true});
-        $compile(element)($scope);
+        element[0].setAttribute('title', event.title);
     };
 
-    /* config object */
+    /* Config */
     $scope.uiConfig = {
         calendar:{
             height: 550,
@@ -102,7 +77,7 @@ angular.module('bamCalendar')
         }
     };
 
-    // Load data from server
+    // Load event data
     function loadEvents(){
         dataFactory.getEvents()
         .then(
@@ -111,10 +86,11 @@ angular.module('bamCalendar')
                     $scope.events.push(response.data[i]);
                 }
             }, function error(response) {
-                //Swallow that shit.
+                alert("Error retrieving data");
             });
     };
 
+    // Set defaults
     $scope.events = [];
     $scope.eventSources = [$scope.events];
     loadEvents();

@@ -1,13 +1,13 @@
 <div class="container">
-    <h1></h1>
+    <h1> </h1>
     <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
         <h4 ng-hide>{{alertMessage}}</h4>
     </div>
     <div class="alert-info calAlert" ng-show="chosenEvent != undefined && chosenEvent != ''">
-        <h4><strong>ID</strong>: {{chosenEvent.id}}</h4>
+        <h4><strong>ID</strong>: {{chosenEvent._id}}</h4>
         <h4><strong>Title</strong>: {{chosenEvent.title}}</h4>
-        <h4><strong>Due Date</strong>: {{chosenEvent.start}}</h4>
         <h4><strong>Requestor</strong>: {{chosenEvent.requestor}}</h4>
+        <h4><strong>Due Date</strong>: {{chosenEvent.start}}</h4>
     </div>
     <div class="btn-toolbar">
         <div class="btn-group">
@@ -22,15 +22,15 @@
         <table>
             <tr>
                 <td><label>Release Title</label></td>
-                <td><input type="text" name="txtNewEventTitle" ng-model="newEventTitle" required></td>
+                <td><input type="text" name="txtNewEventTitle" ng-model="newEventFormData.title" required></td>
             </tr>
             <tr>
                 <td><label>Requestor</label></td>
-                <td><input type="text" name="txtNewEventRequestor" ng-model="newEventRequestor" required></td>
+                <td><input type="text" name="txtNewEventRequestor" ng-model="newEventFormData.requestor" required></td>
             </tr>
             <tr>
                 <td><label>Due Date</label></td>
-                <td><input type="text" name="txtNewEventDueDate" ng-model="newEventDueDate" required></td>
+                <td><input type="text" name="txtNewEventDueDate" ng-model="newEventFormData.start" required></td>
             </tr>
         </table>
         <input type="submit" class="btn btn-success" value="Add Event" ng-disabled="newEventForm.$invalid">

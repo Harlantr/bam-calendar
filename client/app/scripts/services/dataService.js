@@ -13,5 +13,9 @@ angular.module('bamCalendar')
         return $http.get('http://localhost:8081/events');
     };
 
+    dataFactory.addEvent = function (data) {
+        return $http.post('http://localhost:8081/events', data);
+    };
+
     return dataFactory;
 }]);

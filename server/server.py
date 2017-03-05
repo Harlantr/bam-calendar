@@ -3,12 +3,13 @@ Simple REST API using Bottle.py and MongoDB
 '''
 
 import json
+from datetime import datetime, timedelta
 from bottle import route, run, request, abort, hook, response
 from pymongo import MongoClient
 from bson import ObjectId
 
 CONNECTION = MongoClient('localhost', 27017)
-DB = CONNECTION['todos']
+DB = CONNECTION['events']
 
 # Custom JSON Encoder to turn MongoDB's ObjectId into a string
 class JSONEncoder(json.JSONEncoder):
@@ -30,7 +31,7 @@ def enable_cors(fn):
 
     return _enable_cors
 
-@route('/todos', method='POST')
+@route('/events', method='POST')
 @enable_cors
 def post_todo():
     ''' POST Request '''
@@ -39,29 +40,26 @@ def post_todo():
 
     entity = json.load(request.body)
     try:
-        inserted = DB['todos'].insert(entity)
-        print entity
+        inserted = DB['events'].insert(entity)
     except BaseException as _ve:
         abort(400, str(_ve))
 
-@route('/todos', method='GET')
+@route('/events', method='GET')
 @enable_cors
 def get_todo():
     ''' GET Request '''
     response.content_type = 'application/json'
 
-    entity = DB['todos'].find()
+    entity = DB['events'].find()
     entries = [entry for entry in entity]
-    if not entity:
-        abort(404, 'No document with id %s' % _id)
     return JSONEncoder().encode(entries)
 
-@route('/todos/:_id', method=['OPTIONS', 'DELETE'])
+@route('/events/:_id', method=['OPTIONS', 'DELETE'])
 @enable_cors
 def delete_todo(_id):
     ''' DELETE Request '''
 
-    entity = DB['todos'].delete_one({'_id':ObjectId(_id)})
+    entity = DB['events'].delete_one({'_id':ObjectId(_id)})
     if not entity:
         abort(404, 'No document with id %s' % _id)
 
