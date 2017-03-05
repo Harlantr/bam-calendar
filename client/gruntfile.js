@@ -71,10 +71,19 @@ module.exports = function(grunt) {
                     hostname: 'localhost',
                     base: 'dist',
                     open: false,
-                    keepalive: true
+                    livereload: true
                 }
             }
-        }
+        },
+
+        watch: {
+            files: ['./app/**/*.*'],
+            tasks: ['serve'],
+            options: {
+                spawn: true,
+                livereload: true
+            },
+        },
     });
 
     grunt.registerTask('default',[
@@ -90,7 +99,8 @@ module.exports = function(grunt) {
 
     grunt.registerTask('serve',[
         'default',
-        'connect'
+        'connect',
+        'watch'
     ]);
 }
 
